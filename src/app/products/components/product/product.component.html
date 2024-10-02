@@ -1,0 +1,54 @@
+<section #model id="product" class="pt-5 bg-color
+d-none position-fixed top-0 end-0 start-0 bottom-0">
+  <div class="container m-auto bg-white p-3">
+    <div class="d-flex justify-content-between border-bottom">
+      <h3>Add product</h3>
+      <i (click)="closeElement()" class="fa-solid fa-xmark fa-2x"
+        role="button"></i>
+    </div>
+    <form [formGroup]="formProduct">
+      <div class="row">
+        <div class="col-md-4">
+          <label for="title">Title</label>
+          <input formControlName="title" id="title" type="text"
+            class="form-control shadow-none"
+            placeholder="title">
+        </div>
+        <div class="col-md-4">
+          <label for="price">Price</label>
+          <input formControlName="price" id="price" type="text"
+            class="form-control shadow-none"
+            placeholder="price">
+        </div>
+        <div class="col-md-4">
+          <app-select [data]="categories" [Category]="'Categories'"
+            (selection)="getTypeCategory($event)"></app-select>
+        </div>
+        <div class="col-md-4">
+          <label for="image">Image</label>
+          <img [src]="baseUrl" alt class="d-block">
+          <input id="image" type="file" class="form-control shadow-none"
+            (change)="getImage($event)">
+        </div>
+        <div class="col-md-8">
+          <label for="description">Description</label>
+          <textarea formControlName="description" name="description"
+            id="description"
+            placeholder="Write description of product..."
+            class="form-control shadow-none"></textarea>
+        </div>
+      </div>
+    </form>
+    <button [disabled]="formProduct.invalid"
+      class="btn btn-success ms-auto d-flex my-2" (click)="addProd()">Add
+      Product</button>
+  </div>
+
+</section>
+<section class="py-5">
+  
+    <app-one-product [NameBtn]="'Add Product'" [products]="products"
+      [title]="'Title'" [category]="'Category'"
+      [price]="'Price'" (Clicked)="showAddProduct()" ></app-one-product>
+  
+</section>

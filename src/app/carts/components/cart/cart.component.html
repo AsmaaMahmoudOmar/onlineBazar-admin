@@ -1,0 +1,103 @@
+<section class="py-5">
+    <h2 class="h4 fw-bold"> User Carts:</h2>
+    <div class="boxShadow border rounded p-3">
+        <form [formGroup]="formDate">
+            <div class="row mb-2">
+                <div class="col-md-3">
+                    <label for="start" class="fw-bold">Start Date:</label>
+                    <input id="start" formControlName="start" type="date"
+                        class="form-control shadow-none">
+                </div>
+                <div class="col-md-3">
+                    <label for="end" class="fw-bold">End Date:</label>
+                    <input id="end" formControlName="end" type="date"
+                        class="form-control shadow-none">
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button class="btn btn-success"
+                        (click)="filterByDate()">Apply</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="text-center">
+                        <th scope="col">Date</th>
+                        <th scope="col"> Quantity</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="itmes text-center"
+                        *ngFor="let item of carts; let index=index">
+
+                        <td>{{item.date |date:"dd-MM-yyyy"}}</td>
+
+                        <td class="text-warning">{{ item.products.length }}</td>
+                        <td>
+                            <button
+                                class="btn text-bg-danger"
+                                (click)="deletCart(item.id)">Delete</button>
+                        </td>
+                        <td>
+                            <button
+                                class="btn text-bg-warning"
+                                (click)="viewDetails(index)">View</button>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<section #model
+    class="pt-5 align-items-center justify-content-center bg-color
+     d-none position-fixed top-0 end-0 start-0 bottom-0">
+    <div class="bg-white p-2">
+        <div class="d-flex align-items-end">
+            <i class="fa-solid fa-xmark fa-2x ms-auto " role="button"
+                (click)="closeElement()"></i>
+        </div>
+        <div
+            class="table-responsive">
+            <table
+                class="table table-hover">
+                <thead>
+                    <tr class="text-center">
+                        <th scope="col"></th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Price</th>
+                        <th scope="col"> Quantity</th>
+                        <th scope="col"> Total</th>
+                        <th scope="col"></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="itmes text-center vertical"
+                        *ngFor="let item of cartProducts; let index=index" [routerLink]="['/detail',item?.item?.id]">
+                        <td scope="row">
+                            <img class="rounded rounded-circle"
+                                [src]="item.item.image" [alt]="item.title"></td>
+                        <td>{{item.item.title}}</td>
+                        <td class="text-success">{{item.item.price |
+                            currency:"EGP"}}</td>
+                        <td class="text-warning">{{
+                            item.quantity }}</td>
+                        <td class="text-warning">{{item.item.price *
+                            item.quantity |currency: "EGP"}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ms-auto d-flex justify-content-end align-items-center">
+            <span class="fw-bold mx-3">Total {{total}} :</span>
+        </div>
+    </div>
+
+</section>

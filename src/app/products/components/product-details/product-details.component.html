@@ -1,0 +1,23 @@
+
+<section class="py-5" *ngIf="ProductDetials">
+    <h2 class="fw-bold h4">Product Details:</h2>
+    <div
+        class="row align-items-center border rounded boxShadow bg-light m-3 m-md-0">
+        <div class="col-md-4">
+            <img class="w-100" [src]="ProductDetials?.image"
+                [alt]="ProductDetials?.title">
+        </div>
+        <div class=" offset-md-2 col-md-6">
+            <h4>Title: <span class="lead"> {{ProductDetials?.title}}</span></h4>
+            <h4 class="h4">Category: <span class="lead">
+                    {{ProductDetials?.category}}</span> </h4>
+            <p class="fw-bold">Description: <span
+                    class="lead">{{ProductDetials?.description}}</span></p>
+            <p
+                class="fw-bold">Price:
+                <span class="lead">{{ProductDetials?.price|currency}}</span></p>
+            <p class="fw-bold">Count: <span class="lead">{{ProductDetials?.rating?.count}}</span></p>
+
+        </div>
+    </div>
+</section>

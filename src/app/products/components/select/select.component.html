@@ -1,0 +1,7 @@
+<label for="categories">{{Category}}</label>
+<select class="form-control shadow-none"
+  (change)="sendCategory($event)">
+  <option value="all">All</option>
+  <option *ngFor="let option of data"
+    [value]="option">{{option}}</option>
+</select>

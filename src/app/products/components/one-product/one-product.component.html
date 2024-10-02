@@ -1,0 +1,31 @@
+
+
+
+<div class="table-responsive boxShadow">
+  <button (click)="clickAddProduct()" class="btn btn-success m-3">
+   {{NameBtn}}
+  </button>
+<table
+  class="table table-hover">
+  <thead>
+    <tr class="text-center vertical">
+      <th scope="col"></th>
+      <th scope="col">{{title}}</th>
+      <th scope="col">{{category}}</th>
+      <th scope="col">{{price}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="itmes text-center vertical" *ngFor="let item of products" [routerLink]="['/detail',item.id]">
+        <td scope="row">
+          <img class="rounded rounded-circle"
+            [src]="item.image" [alt]="item?.title"></td>
+        <td>{{item?.title}}</td>
+        <td class="text-capitalize">{{item?.category}}</td>
+        
+        <td class="text-success">{{item?.price |
+          currency:"EGP"}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
